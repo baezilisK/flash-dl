@@ -1,0 +1,6 @@
+Simple utility to monitor any Flash content (music, videos, etc) opened
+by Google Chrome and save them to disk.
+
+I belive this code requires a POSIX system to run. With recent versions
+of adobe-flash it must be run as root due to permissions on certain
+subdirectories of /proc.
