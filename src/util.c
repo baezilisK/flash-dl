@@ -26,6 +26,10 @@ char *xstrvcat (char **s) {
 }
 
 char *xstrcat3 (char *a, char *b, char *c) {
-  char *A[] = {a, b, c, NULL};
+  char *A[4];
+    A[0] = a;
+    A[1] = b;
+    A[2] = c;
+    A[3] = NULL;
   return xstrvcat (A);
 }

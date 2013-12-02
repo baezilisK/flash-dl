@@ -122,13 +122,19 @@ void update (void) {
       }
     } else if (stat (filename[i], &st)) {
       --n;
+      printf ("delete %s\n", filename[i]);
       for (j = i; j < n; ++j) {
         strcpy (filename[j], filename[j + 1]);
         cursize[j] = cursize[j + 1];
         lastsize[j] = lastsize[j + 1];
         saved[j] = saved[j + 1];
       }
-    } else {
+    } else if (st.st_size < lastsize[i]) {
+      saved[i] = 0;
+      lastsize[i] = 0;
+      cursize[i] = st.st_size;
+    } else if (!saved[i]) {
+      printf ("update %s (%d %lu)\n", filename[i], cursize[i], st.st_size);
       lastsize[i] = cursize[i];
       cursize[i] = st.st_size;
     }
@@ -137,6 +143,7 @@ void update (void) {
 
 int main (void) {
   for (;;) {
+    printf ("iter %d\n", n);
     scan ();
     update ();
     system (SLEEP);
