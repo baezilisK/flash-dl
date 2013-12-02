@@ -143,7 +143,6 @@ void update (void) {
 
 int main (void) {
   for (;;) {
-    printf ("iter %d\n", n);
     scan ();
     update ();
     system (SLEEP);
