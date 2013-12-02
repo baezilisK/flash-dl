@@ -151,5 +151,5 @@ int main (void) {
     update ();
     system (SLEEP);
   }
-  exit (EXIT_SUCCESS);
+  exit (EXIT_FAILURE);
 }
