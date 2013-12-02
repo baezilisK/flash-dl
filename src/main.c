@@ -129,15 +129,19 @@ void update (void) {
         lastsize[j] = lastsize[j + 1];
         saved[j] = saved[j + 1];
       }
-    } else if (st.st_size < lastsize[i]) {
-      saved[i] = 0;
-      lastsize[i] = 0;
-      cursize[i] = st.st_size;
     } else if (!saved[i]) {
       printf ("update %s (%d %lu)\n", filename[i], cursize[i], st.st_size);
       lastsize[i] = cursize[i];
       cursize[i] = st.st_size;
-    }
+    } else if (st.st_size != lastsize[i]) {
+      printf ("new file %s (%d -> %lu)\n",
+        filename[i], lastsize[i], st.st_size
+      );
+      saved[i] = 0;
+      lastsize[i] = 0;
+      cursize[i] = st.st_size;
+    } else printf ("unchanged %s %d %lu\n", filename[i], cursize[i],
+      st.st_size);
   }
 }
 
