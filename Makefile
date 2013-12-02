@@ -9,7 +9,7 @@ flash-dl: src/main.c $(MODULES_BIN)
 	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $^
 
 bin/%.o: src/%.c
-	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $<
+	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $<
 
 clean:
 	rm -f main bin/*
