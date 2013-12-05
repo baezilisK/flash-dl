@@ -54,6 +54,7 @@ void scan (void) {
           char *name = xstrcat3 (path, "/", d->d_name);
           char buf[NAME_LEN];
 
+          memset (buf, 0, NAME_LEN);
           if (readlink (name, buf, NAME_LEN - 1) > 0)
             if (1
                 && strstr (buf, "Chrome") 
